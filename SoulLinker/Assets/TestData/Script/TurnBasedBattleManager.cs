@@ -46,7 +46,6 @@ public class TurnBasedBattleManager : MonoBehaviour
         // バトル中ではない時はバトル開始。バトル中ならば警告を出す。
         if (m_battleState == BattleState.None)
         {
-            m_builder.AppendLine("Start Battle.");
             m_battleState = BattleState.Start;
             m_action = ActionType.None;
             m_player = player;
@@ -68,6 +67,7 @@ public class TurnBasedBattleManager : MonoBehaviour
         {
             case BattleState.Start:
                 m_battleState = BattleState.PlayerTurn;
+                m_builder.AppendLine("Start Battle.");
                 m_builder.AppendLine("BattleState: " + m_battleState.ToString());
                 Refresh();
                 break;
