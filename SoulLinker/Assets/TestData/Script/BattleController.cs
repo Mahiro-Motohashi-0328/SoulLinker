@@ -20,6 +20,9 @@ public class BattleController : MonoBehaviour
     void Start()
     {
         m_battleManager = GetComponent<TurnBasedBattleManager>();
+        // 敵のプレハブからオブジェクトを作り、バトルを開始する
+        Enemy enemy = Instantiate(m_enemyPrefab) as Enemy;
+        m_battleManager.StartBattle(m_player, enemy);
     }
 
     /// <summary>
