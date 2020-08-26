@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47fbc71dd4ba7d42a41dc63a1d59c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterNomber: 2
   m_name: Sword
   m_maxHp: 10
   m_maxMp: 50

@@ -22,10 +22,14 @@ public class TurnBasedBattleManager : MonoBehaviour
     [SerializeField] Image m_playerSprite;
     /// <summary>敵の画像</summary>
     [SerializeField] Image m_enemySprite;
+    /// <summary>プレイヤーの名前</summary>
+    [SerializeField] Text m_playerName;
     /// <summary>プレイヤーHPのゲージ</summary>
     [SerializeField] Slider m_playerHpGauge;
     /// <summary>プレイヤーMPのゲージ</summary>
     [SerializeField] Slider m_playerMpGauge;
+    /// <summary>プレイヤーの名前</summary>
+    [SerializeField] Text m_enemyName;
     /// <summary>敵HPのゲージ</summary>
     [SerializeField] Slider m_enemyHpGauge;
     /// <summary>敵MPのゲージ</summary>
@@ -203,9 +207,19 @@ public class TurnBasedBattleManager : MonoBehaviour
             m_playerSprite.sprite = m_player.Sprite;
         }
 
+        if (m_playerName)
+        {
+            m_playerName.text = m_player.Name;
+        }
+
         if (m_enemySprite)
         {
             m_enemySprite.sprite = m_enemy.Sprite;
+        }
+
+        if (m_enemyName)
+        {
+            m_enemyName.text = m_enemy.Name;
         }
     }
 
