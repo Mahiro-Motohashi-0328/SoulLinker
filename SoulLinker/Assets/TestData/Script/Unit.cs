@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 /// <summary>
 /// プレイヤーや敵など、ユニットのベースとなるコンポーネント
 /// </summary>
 public class Unit : MonoBehaviour
 {
+    [SerializeField] private int characterNomber = 1;
     [SerializeField] protected string m_name = "name";
     [SerializeField] protected int m_maxHp = 100;
     protected int m_currentHp;
@@ -26,14 +28,43 @@ public class Unit : MonoBehaviour
     protected UnitState m_status = UnitState.None;
     /// <summary>ユニットの画像（スプライト）</summary>
     [SerializeField] protected Sprite m_sprite;
+    TextAsset csvFile; // CSVファイル
+    List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
 
+    void Awake()
+    {
+        csvFile = Resources.Load("SoulLinkerキャラシート") as TextAsset; // Resouces下のCSV読み込み
+        StringReader reader = new StringReader(csvFile.text);
+
+        // , で分割しつつ一行ずつ読み込み
+        // リストに追加していく
+        while (reader.Peek() != -1) // reader.Peaekが-1になるまで
+        {
+            string line = reader.ReadLine(); // 一行ずつ読み込み
+            string[] values = line.Split(',');
+            csvDatas.Add(values); // , 区切りでリストに追加
+        }
+
+        // csvDatas[行][列]を指定して値を自由に取り出せる
+        Debug.Log(csvDatas[characterNomber][0]);
+        reader.Close();
+        m_name = csvDatas[characterNomber][1];
+        m_maxHp = int.Parse(csvDatas[characterNomber][2]);
+        m_maxMp = int.Parse(csvDatas[characterNomber][3]);
+        m_attackPower = int.Parse(csvDatas[characterNomber][4]);
+        m_healPower = int.Parse(csvDatas[characterNomber][5]);
+        m_consumedMpForMagic = int.Parse(csvDatas[characterNomber][6]);
+        // インスタンス生成時はHP/MP共に最大にする
+        m_currentHp = m_maxHp;
+        m_currentMp = m_maxMp;
+    }
     /// <summary>
     /// ユニット名
     /// </summary>
     public string Name
     {
         get { return m_name; }
-    }
+    } 
 
     /// <summary>
     /// 最大HP
@@ -75,6 +106,16 @@ public class Unit : MonoBehaviour
         get { return m_attackPower; }
     }
 
+    public int HealPower
+    {
+        get { return m_healPower; }
+    }
+
+    public int MagicPower
+    {
+        get { return m_consumedMpForMagic; }
+    }
+
     /// <summary>
     /// キャラクターのスプライト
     /// </summary>
@@ -82,14 +123,6 @@ public class Unit : MonoBehaviour
     {
         get { return m_sprite; }
     }
-
-    void Awake()
-    {
-        // インスタンス生成時はHP/MP共に最大にする
-        m_currentHp = m_maxHp;
-        m_currentMp = m_maxMp;
-    }
-
     /// <summary>
     /// ターン開始時に呼ぶ
     /// </summary>

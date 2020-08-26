@@ -152,10 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7173f02c032e8498934cf9490112fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterNomber: 2
   m_name: Soul
   m_maxHp: 100
   m_maxMp: 50
-  m_attackPower: 10
+  m_attackPower: 20
   m_healPower: 25
   m_consumedMpForHeal: 10
   m_magicPower: 25
@@ -457,8 +458,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerSprite: {fileID: 1481066869}
   m_enemySprite: {fileID: 1687040601}
+  m_playerName: {fileID: 850121941}
   m_playerHpGauge: {fileID: 1857985359}
   m_playerMpGauge: {fileID: 1289640667}
+  m_enemyName: {fileID: 701904042}
   m_enemyHpGauge: {fileID: 296599863}
   m_enemyMpGauge: {fileID: 1106945939}
 --- !u!4 &127268573
@@ -1036,7 +1039,7 @@ GameObject:
   - component: {fileID: 701904043}
   - component: {fileID: 701904042}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: EnemyNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,7 +1402,7 @@ GameObject:
   - component: {fileID: 850121942}
   - component: {fileID: 850121941}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: PlayerNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
