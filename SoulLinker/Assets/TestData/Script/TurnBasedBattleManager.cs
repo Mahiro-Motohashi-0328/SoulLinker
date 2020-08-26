@@ -34,6 +34,8 @@ public class TurnBasedBattleManager : MonoBehaviour
     [SerializeField] Slider m_enemyHpGauge;
     /// <summary>敵MPのゲージ</summary>
     [SerializeField] Slider m_enemyMpGauge;
+    /// <summary>戦況テキスト</summary>
+    [SerializeField] public Text battleText;
 
     void Start()
     {
@@ -195,6 +197,7 @@ public class TurnBasedBattleManager : MonoBehaviour
         Debug.Log(m_builder.ToString());
         m_builder.Clear();
         RefreshGauges();
+        battleText.text = m_player.Name + "'s HP: " + m_player.Hp;
     }
 
     /// <summary>
