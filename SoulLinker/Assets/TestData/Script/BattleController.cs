@@ -47,11 +47,25 @@ public class BattleController : MonoBehaviour
         m_battleManager.StartBattle(m_player, enemy);
     }
 
+
+    int i = 1;
     /// <summary>
     /// 攻撃
     /// </summary>
     public void PlayerAttack()
     {
+        while(true)
+        {
+            if(i == 1)
+            {
+                Debug.Log("攻撃");
+                i++;
+            }
+            else
+            {
+                break;
+            }
+        }
         m_battleManager.SetPlayerAction(ActionType.Attack);
     }
 
