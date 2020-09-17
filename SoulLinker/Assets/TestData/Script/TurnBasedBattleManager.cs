@@ -36,6 +36,10 @@ public class TurnBasedBattleManager : MonoBehaviour
     [SerializeField] Slider m_enemyMpGauge;
     /// <summary>戦況テキスト</summary>
     [SerializeField] public Text battleText;
+    /// <summary>攻撃パネル制御</summary>
+    PlayerShieldController AttackControll;
+    /// <summary>攻撃時のUI</summary>
+    [SerializeField] public GameObject AttackPanel;
 
     void Start()
     {
@@ -47,7 +51,8 @@ public class TurnBasedBattleManager : MonoBehaviour
     /// </summary>
     /// <param name="player">プレイヤーのオブジェクト</param>
     /// <param name="enemy">敵のオブジェクト</param>
-    public void StartBattle(Unit player, Enemy enemy)
+    /// <param name="attackPanel">敵のオブジェクト</param>
+    public void StartBattle(Unit player, Enemy enemy,PlayerShieldController attackPanel)
     {
         // バトル中ではない時はバトル開始。バトル中ならば警告を出す。
         if (m_battleState == BattleState.None)
@@ -56,6 +61,7 @@ public class TurnBasedBattleManager : MonoBehaviour
             m_action = ActionType.None;
             m_player = player;
             m_enemy = enemy;
+            AttackControll = attackPanel;
             SetImages();
             RefreshGauges();
         }
@@ -78,14 +84,29 @@ public class TurnBasedBattleManager : MonoBehaviour
                 Refresh();
                 break;
             case BattleState.PlayerTurn:
+                if (m_action == ActionType.Attack)
+                {
+                    AttackControll.movementShield();
+                    if (AttackControll.death == true)
+                    {
+                        for (int i = AttackControll.HitCount; i > 0; i--)
+                        {
+                            m_enemy.Damage(m_player.AttackPower);
+                        }
+                        DoAction(m_player, m_enemy);
+                        AttackPanel.SetActive(false);
+                    }
+                    Debug.Log("攻撃失敗");
+                }
                 // プレイヤーが行動を決めるまでは待機する
-                if (m_action != ActionType.None)
+                else if (m_action != ActionType.None)
                 {
                     m_builder.AppendLine("BattleState: " + m_battleState.ToString());
                     m_player.BeginTurn();
                     DoAction(m_player, m_enemy);
                     Refresh();
                 }
+                
                 break;
             case BattleState.EnemyTurn:
                 m_builder.AppendLine("BattleState: " + m_battleState.ToString());
@@ -141,7 +162,6 @@ public class TurnBasedBattleManager : MonoBehaviour
         switch (m_action)
         {
             case ActionType.Attack:
-                target.Damage(subject.AttackPower);
                 break;
             case ActionType.Heal:
                 subject.Heal();
@@ -156,33 +176,35 @@ public class TurnBasedBattleManager : MonoBehaviour
                 break;
         }
 
-        m_action = ActionType.None; // 行動が終わったら指示された行動内容を消す
-
-        // 勝敗を判定し、状態を切り替える
-        if (target.Equals(m_enemy))
+        if(AttackControll.death == true)
         {
-            if (target.Hp > 0)
+            m_action = ActionType.None; // 行動が終わったら指示された行動内容を消す
+                                        // 勝敗を判定し、状態を切り替える
+            if (target.Equals(m_enemy))
             {
-                m_battleState = BattleState.EnemyTurn;
+                if (target.Hp > 0)
+                {
+                    m_battleState = BattleState.EnemyTurn;
+                }
+                else
+                {
+                    m_battleState = BattleState.Won;
+                }
             }
             else
             {
-                m_battleState = BattleState.Won;
+                if (target.Hp > 0)
+                {
+                    m_battleState = BattleState.PlayerTurn;
+                }
+                else
+                {
+                    m_battleState = BattleState.Lost;
+                }
             }
-        }
-        else
-        {
-            if (target.Hp > 0)
-            {
-                m_battleState = BattleState.PlayerTurn;
-            }
-            else
-            {
-                m_battleState = BattleState.Lost;
-            }
-        }
 
-        m_builder.AppendLine("Next BattleState: " + m_battleState.ToString());
+            m_builder.AppendLine("Next BattleState: " + m_battleState.ToString());
+        }
     }
 
     /// <summary>

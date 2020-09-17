@@ -13,6 +13,7 @@ public class BattleController : MonoBehaviour
     [SerializeField] Unit m_player;
     /// <summary>敵のプレハブ</summary>
     [SerializeField] Enemy m_enemyPrefab;
+    [SerializeField] PlayerShieldController m_playerAttackPanel;
     /// <summary>敵のプレハブ（複数）</summary>
     [SerializeField] Enemy[] m_enemyPrefabsForRandomBattle;
     TurnBasedBattleManager m_battleManager;
@@ -22,7 +23,7 @@ public class BattleController : MonoBehaviour
         m_battleManager = GetComponent<TurnBasedBattleManager>();
         // 敵のプレハブからオブジェクトを作り、バトルを開始する
         Enemy enemy = Instantiate(m_enemyPrefab) as Enemy;
-        m_battleManager.StartBattle(m_player, enemy);
+        m_battleManager.StartBattle(m_player, enemy,m_playerAttackPanel);
     }
 
     /// <summary>
@@ -32,7 +33,7 @@ public class BattleController : MonoBehaviour
     {
         // 敵のプレハブからオブジェクトを作り、バトルを開始する
         Enemy enemy = Instantiate(m_enemyPrefab) as Enemy;
-        m_battleManager.StartBattle(m_player, enemy);
+        m_battleManager.StartBattle(m_player, enemy,m_playerAttackPanel);
     }
 
     /// <summary>
@@ -44,28 +45,15 @@ public class BattleController : MonoBehaviour
         int i = Random.Range(0, m_enemyPrefabsForRandomBattle.Length);
         Enemy enemyPrefab = m_enemyPrefabsForRandomBattle[i];
         Enemy enemy = Instantiate(enemyPrefab) as Enemy;
-        m_battleManager.StartBattle(m_player, enemy);
+        m_battleManager.StartBattle(m_player, enemy,m_playerAttackPanel);
     }
 
-
-    int i = 1;
     /// <summary>
     /// 攻撃
     /// </summary>
     public void PlayerAttack()
     {
-        while(true)
-        {
-            if(i == 1)
-            {
-                Debug.Log("攻撃");
-                i++;
-            }
-            else
-            {
-                break;
-            }
-        }
+        m_battleManager.AttackPanel.SetActive(true);
         m_battleManager.SetPlayerAction(ActionType.Attack);
     }
 
