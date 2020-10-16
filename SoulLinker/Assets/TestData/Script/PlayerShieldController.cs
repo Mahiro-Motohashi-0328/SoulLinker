@@ -11,10 +11,12 @@ public class PlayerShieldController : MonoBehaviour
     [SerializeField] int speed = 5;
     [SerializeField] public int HitCount = 0;
     [SerializeField] public bool death = false;
+    [SerializeField] bool isFirst = true;
+    [SerializeField] PhysicsMaterial2D Bound1;
+    [SerializeField] PhysicsMaterial2D Bound2;
+    [SerializeField] GameObject[] walls;
     Rigidbody2D Ball;
     Rigidbody2D Shield;
-    Rigidbody Player;
-    Rigidbody enemy;
     Collider2D ballCollider;
     Collider2D pSoul;
     Collider2D eSoul;
@@ -24,10 +26,13 @@ public class PlayerShieldController : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
+        isFirst = true;
         //死亡判定のリセット
         death = false;
         //Hit回数の初期化
         HitCount = 0;
+        Bound1 = ballCollider.sharedMaterial;
+        Bound1.bounciness = 1.0f;
 
     }
 
@@ -74,7 +79,31 @@ public class PlayerShieldController : MonoBehaviour
             Shield.velocity = Vector2.down * speed;
         }
     }
+    public void ballRandomStart()
+    {
+        if (isFirst)
+        {
+            isFirst = false;  // 一回はすぎた
+            Vector2 force = new Vector2(25000.0f,Random.Range(-600f,6000f));  // 力を設定
+            Ball.AddForce(force);// 力を加える
+        }
 
+        //if (Ball.velocity.magnitude <= 1000 && Ball.velocity.magnitude >= 400)
+        //{
+            //speedX = Ball.velocity.x;
+            //speedY = Ball.velocity.y;
+            //moveDir = new Vector2(speedX, speedY);
+        //}
 
+        if(Ball.velocity.magnitude >100)
+        {
+            //Collision();
+            //Ball.velocity = Vector2.zero; // 力を加える
+            //Ball.velocity = new Vector2(moveDir.x,moveDir.y);
+            //foreach ();
+            Bound1.bounciness = 0f;
+        }
 
+        Debug.Log(Ball.velocity.magnitude);
+    }
 }

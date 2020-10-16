@@ -87,6 +87,7 @@ public class TurnBasedBattleManager : MonoBehaviour
                 if (m_action == ActionType.Attack)
                 {
                     AttackControll.movementShield();
+                    AttackControll.ballRandomStart();
                     if (AttackControll.death == true)
                     {
                         for (int i = AttackControll.HitCount; i > 0; i--)
