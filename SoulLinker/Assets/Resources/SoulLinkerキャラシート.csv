@@ -3,3 +3,4 @@ CharacterNo,CharacterName,MaxHP,MaxMP,ATK,helePower,MagicPower
 2,B,50,15,50,0,0
 3,E,40,60,15,50,50
 4,suraimu,5,5,5,5,5
+5,murata,6,4,12,1,2
