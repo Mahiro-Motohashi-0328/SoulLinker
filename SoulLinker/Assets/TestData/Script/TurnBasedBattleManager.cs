@@ -35,11 +35,11 @@ public class TurnBasedBattleManager : MonoBehaviour
     /// <summary>敵MPのゲージ</summary>
     [SerializeField] Slider m_enemyMpGauge;
     /// <summary>戦況テキスト</summary>
-    [SerializeField] public Text battleText;
+    [SerializeField] public Text m_battleText;
     /// <summary>攻撃パネル制御</summary>
-    PlayerShieldController AttackControll;
+    PlayerShieldController m_AttackControll;
     /// <summary>攻撃時のUI</summary>
-    [SerializeField] public GameObject AttackPanel;
+    [SerializeField] public GameObject m_AttackPanel;
 
     void Start()
     {
@@ -61,7 +61,7 @@ public class TurnBasedBattleManager : MonoBehaviour
             m_action = ActionType.None;
             m_player = player;
             m_enemy = enemy;
-            AttackControll = attackPanel;
+            m_AttackControll = attackPanel;
             SetImages();
             RefreshGauges();
         }
@@ -86,16 +86,16 @@ public class TurnBasedBattleManager : MonoBehaviour
             case BattleState.PlayerTurn:
                 if (m_action == ActionType.Attack)
                 {
-                    AttackControll.movementShield();
-                    AttackControll.ballRandomStart();
-                    if (AttackControll.death == true)
+                    m_AttackControll.movementShield();
+                    m_AttackControll.ballRandomStart();
+                    if (m_AttackControll.death == true)
                     {
-                        for (int i = AttackControll.HitCount; i > 0; i--)
+                        for (int i = m_AttackControll.HitCount; i > 0; i--)
                         {
                             m_enemy.Damage(m_player.AttackPower);
                         }
                         DoAction(m_player, m_enemy);
-                        AttackPanel.SetActive(false);
+                        m_AttackPanel.SetActive(false);
                     }
                     Debug.Log("攻撃失敗");
                 }
@@ -177,7 +177,7 @@ public class TurnBasedBattleManager : MonoBehaviour
                 break;
         }
 
-        if(AttackControll.death == true)
+        if(m_AttackControll.death == true)
         {
             m_action = ActionType.None; // 行動が終わったら指示された行動内容を消す
                                         // 勝敗を判定し、状態を切り替える
@@ -220,7 +220,7 @@ public class TurnBasedBattleManager : MonoBehaviour
         Debug.Log(m_builder.ToString());
         m_builder.Clear();
         RefreshGauges();
-        battleText.text = m_player.Name + "'s HP: " + m_player.Hp;
+        m_battleText.text = m_player.Name + "'s HP: " + m_player.Hp;
     }
 
     /// <summary>

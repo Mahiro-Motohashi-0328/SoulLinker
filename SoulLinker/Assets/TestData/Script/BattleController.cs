@@ -53,7 +53,7 @@ public class BattleController : MonoBehaviour
     /// </summary>
     public void PlayerAttack()
     {
-        m_battleManager.AttackPanel.SetActive(true);
+        m_battleManager.m_AttackPanel.SetActive(true);
         m_battleManager.SetPlayerAction(ActionType.Attack);
     }
 
