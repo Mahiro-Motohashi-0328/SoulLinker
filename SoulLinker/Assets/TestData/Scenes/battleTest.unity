@@ -465,8 +465,8 @@ MonoBehaviour:
   m_enemyName: {fileID: 701904042}
   m_enemyHpGauge: {fileID: 296599863}
   m_enemyMpGauge: {fileID: 1106945939}
-  m_battleText: {fileID: 0}
-  m_AttackPanel: {fileID: 0}
+  m_battleText: {fileID: 1903619173}
+  m_AttackPanel: {fileID: 1783545591}
 --- !u!4 &127268573
 Transform:
   m_ObjectHideFlags: 0
@@ -4351,7 +4351,6 @@ MonoBehaviour:
   PlayerSoul: {fileID: 1270047145}
   enemySoul: {fileID: 1984474553}
   speed: 500
-  HitCount: 0
   death: 0
   isFirst: 1
   Bound1: {fileID: 6200000, guid: f32e50aed82ee7047a46aa75046674a6, type: 2}
@@ -4366,6 +4365,7 @@ MonoBehaviour:
   - {fileID: 674524551}
   - {fileID: 1984474553}
   - {fileID: 1037787480}
+  HIt: 0
 --- !u!1 &1804804884
 GameObject:
   m_ObjectHideFlags: 0

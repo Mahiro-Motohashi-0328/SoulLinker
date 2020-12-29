@@ -30,11 +30,13 @@ public class Unit : MonoBehaviour
     [SerializeField] protected Sprite m_sprite;
     CSVReader csv;
     List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
+    TextAsset csvFile; // CSVファイル
 
     void Awake()
     {
-        csv = GameObject.Find("GameManager").GetComponent<CSVReader>();
-        csv.CSVRead();
+        CSVReader cSVReader = new CSVReader();
+        csvFile = Resources.Load("SoulLinkerキャラシート") as TextAsset; // Resouces下のCSV読み込み
+        cSVReader.CSVRead(csvFile,csvDatas);
         m_name = csvDatas[characterNomber][1];
         m_maxHp = int.Parse(csvDatas[characterNomber][2]);
         m_maxMp = int.Parse(csvDatas[characterNomber][3]);

@@ -9,12 +9,12 @@ public class PlayerShieldController : MonoBehaviour
     [SerializeField] GameObject PlayerSoul;
     [SerializeField] GameObject enemySoul;
     [SerializeField] int speed = 5;
-    [SerializeField] public int HitCount = 0;
     [SerializeField] public bool death = false;
     [SerializeField] bool isFirst = true;
     [SerializeField] PhysicsMaterial2D Bound1;
     [SerializeField] PhysicsMaterial2D Bound2;
     [SerializeField] GameObject[] walls;
+    [SerializeField] public bool HIt = false;
     Rigidbody2D Ball;
     Rigidbody2D Shield;
     Collider2D ballCollider;
@@ -29,8 +29,8 @@ public class PlayerShieldController : MonoBehaviour
         isFirst = true;
         //死亡判定のリセット
         death = false;
-        //Hit回数の初期化
-        HitCount = 0;
+        //Hit判定の強制初期化
+        HIt = false;
         Bound1 = ballCollider.sharedMaterial;
         Bound1.bounciness = 1.0f;
 
@@ -51,9 +51,10 @@ public class PlayerShieldController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //失敗したかどうか判定
         if (ballCollider.IsTouching(eSoul))
         {
-            HitCount++;
+            HIt = true;
         }
 
         if (ballCollider.IsTouching(pSoul))

@@ -88,16 +88,16 @@ public class TurnBasedBattleManager : MonoBehaviour
                 {
                     m_AttackControll.movementShield();
                     m_AttackControll.ballRandomStart();
+                    if(m_AttackControll.HIt == true)
+                    {
+                        m_enemy.Damage(m_player.AttackPower);
+                        _ = m_AttackControll.HIt == false;
+                    }
                     if (m_AttackControll.death == true)
                     {
-                        for (int i = m_AttackControll.HitCount; i > 0; i--)
-                        {
-                            m_enemy.Damage(m_player.AttackPower);
-                        }
                         DoAction(m_player, m_enemy);
                         m_AttackPanel.SetActive(false);
                     }
-                    Debug.Log("攻撃失敗");
                 }
                 // プレイヤーが行動を決めるまでは待機する
                 else if (m_action != ActionType.None)
