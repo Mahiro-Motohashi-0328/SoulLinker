@@ -28,7 +28,6 @@ public class Unit : MonoBehaviour
     protected UnitState m_status = UnitState.None;
     /// <summary>ユニットの画像（スプライト）</summary>
     [SerializeField] protected Sprite m_sprite;
-    CSVReader csv;
     List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
     TextAsset csvFile; // CSVファイル
 

@@ -88,7 +88,7 @@ public class PlayerShieldController : MonoBehaviour
             Vector2 force = new Vector2(25000.0f,Random.Range(-600f,6000f));  // 力を設定
             Ball.AddForce(force);// 力を加える
         }
-
+        
         //if (Ball.velocity.magnitude <= 1000 && Ball.velocity.magnitude >= 400)
         //{
             //speedX = Ball.velocity.x;
@@ -98,7 +98,7 @@ public class PlayerShieldController : MonoBehaviour
 
         if(Ball.velocity.magnitude >100)
         {
-            //Collision();
+            //Collision();1111111
             //Ball.velocity = Vector2.zero; // 力を加える
             //Ball.velocity = new Vector2(moveDir.x,moveDir.y);
             //foreach ();

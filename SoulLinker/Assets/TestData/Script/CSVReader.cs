@@ -6,7 +6,6 @@ public class CSVReader : MonoBehaviour
 {
     public void CSVRead(TextAsset csvFile, List<string[]> csvDatas)
     {
-        //csvFile = Resources.Load("SoulLinkerキャラシート") as TextAsset; // Resouces下のCSV読み込み
         StringReader reader = new StringReader(csvFile.text);
 
         // , で分割しつつ一行ずつ読み込み
