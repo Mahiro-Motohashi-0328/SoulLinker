@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7173f02c032e8498934cf9490112fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterNomber: 3
+  characterNomber: 1
   m_name: Soul
   m_maxHp: 100
   m_maxMp: 50
@@ -2032,8 +2032,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -339, y: -26.5}
-  m_SizeDelta: {x: 2, y: 3}
+  m_AnchoredPosition: {x: -339, y: -46.25}
+  m_SizeDelta: {x: 2, y: 2.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889382143
 MonoBehaviour:
@@ -2647,7 +2647,7 @@ RectTransform:
   m_GameObject: {fileID: 1201085692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9700001, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.97, y: 0.25, z: 1}
   m_Children:
   - {fileID: 1903619172}
   m_Father: {fileID: 1215295025}
@@ -2655,8 +2655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -204.5}
-  m_SizeDelta: {x: 0, y: 9}
+  m_AnchoredPosition: {x: 0, y: -218}
+  m_SizeDelta: {x: 0, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1201085694
 MonoBehaviour:
@@ -3709,8 +3709,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -355.00003, y: -91}
-  m_SizeDelta: {x: 0, y: 2}
+  m_AnchoredPosition: {x: -355.00003, y: -110}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1581552504
 MonoBehaviour:
@@ -4705,15 +4705,15 @@ RectTransform:
   m_GameObject: {fileID: 1903619171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.97, z: 1}
   m_Children: []
   m_Father: {fileID: 1201085693}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9, y: 31}
-  m_SizeDelta: {x: 1000, y: 120}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 4200, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1903619173
 MonoBehaviour:
@@ -4737,18 +4737,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 35
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: new
+  m_Text: "\u653B\u6483\uFF01"
 --- !u!222 &1903619174
 CanvasRenderer:
   m_ObjectHideFlags: 0
